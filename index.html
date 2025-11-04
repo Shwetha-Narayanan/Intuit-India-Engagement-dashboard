@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intuit India Engagement Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #236CFF 0%, #00254A 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 25px;
+            padding: 60px 40px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #236CFF, #00254A);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .dashboards {
+            display: grid;
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .dashboard-section {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            border-left: 5px solid #236CFF;
+        }
+        
+        .dashboard-section h2 {
+            color: #00254A;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .dashboard-section h2::before {
+            content: "📊";
+            font-size: 1.5rem;
+        }
+        
+        .dashboard-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .dashboard-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 25px;
+            background: white;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #00254A;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            border: 2px solid transparent;
+        }
+        
+        .dashboard-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(35, 108, 255, 0.2);
+            border-color: #236CFF;
+        }
+        
+        .dashboard-link .link-content {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .dashboard-link .link-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #00254A;
+        }
+        
+        .dashboard-link .link-description {
+            font-size: 0.95rem;
+            color: #666;
+        }
+        
+        .dashboard-link .arrow {
+            font-size: 1.5rem;
+            color: #236CFF;
+            transition: transform 0.3s ease;
+        }
+        
+        .dashboard-link:hover .arrow {
+            transform: translateX(5px);
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px solid #e0e0e0;
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 25px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .header p {
+                font-size: 1rem;
+            }
+            
+            .dashboard-section h2 {
+                font-size: 1.4rem;
+            }
+            
+            .dashboard-link .link-title {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Intuit India Engagement Dashboard</h1>
+            <p>Site Engagement Analytics & Reports</p>
+        </div>
+        
+        <div class="dashboards">
+            <div class="dashboard-section">
+                <h2>FY26 - Quarter 1</h2>
+                <div class="dashboard-links">
+                    <a href="FY26/Q1/FY26-Q1 India Site Engagment Dashboard.html" class="dashboard-link">
+                        <div class="link-content">
+                            <div class="link-title">Q1 Quarterly Dashboard</div>
+                            <div class="link-description">Complete overview of Q1 engagement metrics and analytics</div>
+                        </div>
+                        <span class="arrow">→</span>
+                    </a>
+                    
+                    <a href="FY26/Q1/Aug/FY26-Aug Engagement dashboard.html" class="dashboard-link">
+                        <div class="link-content">
+                            <div class="link-title">August Monthly Dashboard</div>
+                            <div class="link-description">Detailed engagement metrics for August</div>
+                        </div>
+                        <span class="arrow">→</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© Intuit India | Engagement Dashboard | FY26</p>
+        </div>
+    </div>
+</body>
+</html>
+
