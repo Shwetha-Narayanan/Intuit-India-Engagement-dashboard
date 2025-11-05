@@ -53,7 +53,7 @@
         
         .period-badge {
             display: inline-block;
-            background: linear-gradient(135deg, #3BD8FE 0%, #81f2fe 100%);
+            background: #236CFF;
             color: white;
             padding: 12px 30px;
             border-radius: 30px;
@@ -120,6 +120,11 @@
             width: 100%;
         }
         
+        .community-section .metrics-row {
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+        
         .metric-card {
             background: linear-gradient(135deg, #f8f9fa, #e9ecef);
             padding: 15px;
@@ -127,6 +132,10 @@
             text-align: center;
             border-left: 4px solid;
             transition: all 0.3s ease;
+            height: 90px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
         
         .community-section .metric-card {
@@ -170,6 +179,7 @@
             position: relative;
             min-width: 0;
             overflow: hidden;
+            height: 350px;
         }
         
         .chart-title {
@@ -218,14 +228,10 @@
         }
         
         th {
-            background: linear-gradient(135deg, #236CFF, #00254A);
+            background: #236CFF;
             color: white;
             font-weight: 600;
             font-size: 0.9rem;
-        }
-        
-        .site-section th {
-            background: linear-gradient(135deg, #007bff, #0056b3);
         }
         
         tr:nth-child(even) {
@@ -314,6 +320,10 @@
                     <div class="metric-card">
                         <div class="metric-value">611</div>
                         <div class="metric-label">Total Unique Attendees</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">14</div>
+                        <div class="metric-label">Total Communities</div>
                     </div>
                     <div class="metric-card">
                         <div class="metric-value">8</div>
