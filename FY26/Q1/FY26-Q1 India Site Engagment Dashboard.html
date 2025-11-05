@@ -21,11 +21,13 @@
         
         .dashboard-container {
             max-width: 2200px;
+            width: 95%;
             margin: 0 auto;
             background: rgba(255, 255, 255, 0.98);
             border-radius: 25px;
             padding: 40px;
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
         }
         
         .header {
@@ -73,6 +75,8 @@
             padding: 25px;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
             border-top: 5px solid;
+            min-width: 0;
+            overflow: hidden;
         }
         
         .community-section {
@@ -113,6 +117,7 @@
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 15px;
             margin-bottom: 25px;
+            width: 100%;
         }
         
         .metric-card {
@@ -155,6 +160,7 @@
             grid-template-columns: 1fr 1fr;
             gap: 20px;
             margin-bottom: 25px;
+            width: 100%;
         }
         
         .chart-container {
@@ -162,6 +168,8 @@
             padding: 20px;
             border-radius: 15px;
             position: relative;
+            min-width: 0;
+            overflow: hidden;
         }
         
         .chart-title {
@@ -174,7 +182,7 @@
         
         .chart-canvas {
             position: relative;
-            height: 220px;
+            height: 280px;
         }
         
         .data-table {
@@ -182,6 +190,8 @@
             border-radius: 15px;
             padding: 20px;
             overflow-x: auto;
+            width: 100%;
+            max-width: 100%;
         }
         
         .table-title {
@@ -235,13 +245,13 @@
         }
         
         .tech-badge {
-            background-color: #00254A;
+            background-color: #236CFF;
             color: white;
         }
         
         .non-tech-badge {
-            background-color: #F9C741;
-            color: #000;
+            background-color: #00254A;
+            color: white;
         }
         
         .nps-pending {
@@ -501,12 +511,8 @@
                         <div class="metric-label">Total Unique Attendees</div>
                     </div>
                     <div class="metric-card">
-                        <div class="metric-value">2</div>
-                        <div class="metric-label">Event Categories</div>
-                    </div>
-                    <div class="metric-card">
                         <div class="metric-value">3</div>
-                        <div class="metric-label">Major Events</div>
+                        <div class="metric-label">Site Events</div>
                     </div>
                 </div>
                 
@@ -647,9 +653,9 @@
         Chart.defaults.font.size = 12;
         Chart.defaults.plugins.legend.labels.usePointStyle = true;
 
-        // Color palettes - Updated with primary and secondary colors
-        const communityColors = ['#236CFF', '#00254A', '#3BD8SE', '#F9C741', '#81f2fe', '#FFD1E9', '#AC6500', '#6f42c1']; // Super Blue, Blueberry-110, Kiwi-50, Honey-40, Agave-30, Dragonfruit-20, Honey-80, Purple
-        const siteColors = ['#007bff', '#28a745', '#ffc107', '#dc3545', '#6f42c1', '#fd7e14', '#20c997']; // Primary Blue, Success Green, Warning Yellow, Danger Red, Purple, Orange, Teal
+        // Color palettes - Primary colors only from Primary colours.png
+        const communityColors = ['#236CFF', '#00254A', '#81f2fe', '#C2F5FF', '#4D8FFF', '#5BA3FF', '#1E5BB8', '#0D3B7A']; // Super Blue, blueberry-110, agave-30, agave-20, medium blues for PMO/xD/IAN/PE
+        const siteColors = ['#236CFF', '#00254A', '#81f2fe', '#C2F5FF', '#EFF4F9', '#F4F4EF', '#000000']; // Super Blue, blueberry-110, agave-30, agave-20, wintermint-100, tofu-100, black
 
         // Community Participation Chart
         const communityParticipationCtx = document.getElementById('communityParticipationChart').getContext('2d');
@@ -671,7 +677,7 @@
                 plugins: {
                     legend: {
                         position: 'bottom',
-                        labels: { padding: 15, font: { size: 10 } }
+                        labels: { padding: 8, font: { size: 8 }, boxWidth: 12, boxHeight: 12 }
                     }
                 }
             }
@@ -682,10 +688,10 @@
         new Chart(communityEventTypesCtx, {
             type: 'pie',
             data: {
-                labels: ['Tech Events', 'Non-Tech Events'],
+                labels: ['Tech', 'Non Tech'],
                 datasets: [{
                     data: [298, 438], // Tech: 230+15+21+24+8=298, Non-Tech: 146+85+66+54+38+21+19+9=438
-                    backgroundColor: ['#3BD8SE', '#F9C741'],
+                    backgroundColor: ['#236CFF', '#00254A'], // Tech: Super Blue, Non Tech: blueberry-110
                     borderWidth: 3,
                     borderColor: '#fff'
                 }]
@@ -733,10 +739,10 @@
         new Chart(siteCategoriesCtx, {
             type: 'pie',
             data: {
-                labels: ['Non-Tech (Site Events)', 'Tech (Site Tech Events)'],
+                labels: ['Non Tech', 'Tech'],
                 datasets: [{
                     data: [3553, 389], // Non-Tech: 2260 (Diwali) + 1293 (SOC) = 3553, Tech: 389 (Cybersam)
-                    backgroundColor: ['#F9C741', '#3BD8SE'],
+                    backgroundColor: ['#00254A', '#236CFF'], // Non Tech: blueberry-110, Tech: Super Blue
                     borderWidth: 3,
                     borderColor: '#fff'
                 }]
