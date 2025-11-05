@@ -445,13 +445,13 @@
                             </tr>
                             <tr>
                                 <td>PDX</td>
-                                <td>148</td>
-                                <td>32.03%</td>
+                                <td>150</td>
+                                <td>32.47%</td>
                             </tr>
                             <tr>
                                 <td>GBSG</td>
-                                <td>183</td>
-                                <td>28.33%</td>
+                                <td>187</td>
+                                <td>28.95%</td>
                             </tr>
                             <tr>
                                 <td>FinTech</td>
@@ -480,8 +480,8 @@
                             </tr>
                             <tr>
                                 <td>CreditKarma</td>
-                                <td>1</td>
-                                <td>2.27%</td>
+                                <td>2</td>
+                                <td>4.55%</td>
                             </tr>
                         </tbody>
                     </table>
@@ -497,7 +497,7 @@
                 
                 <div class="metrics-row">
                     <div class="metric-card">
-                        <div class="metric-value">1,471</div>
+                        <div class="metric-value">1,736</div>
                         <div class="metric-label">Total Unique Attendees</div>
                     </div>
                     <div class="metric-card">
@@ -505,7 +505,7 @@
                         <div class="metric-label">Event Categories</div>
                     </div>
                     <div class="metric-card">
-                        <div class="metric-value">2</div>
+                        <div class="metric-value">3</div>
                         <div class="metric-label">Major Events</div>
                     </div>
                 </div>
@@ -539,6 +539,11 @@
                         </thead>
                         <tbody>
                             <tr>
+                                <td>Diwali Sweet distribution</td>
+                                <td>2,260</td>
+                                <td><span class="event-type-badge non-tech-badge">Non Tech</span></td>
+                            </tr>
+                            <tr>
                                 <td>SOC</td>
                                 <td>1,293</td>
                                 <td><span class="event-type-badge non-tech-badge">Non Tech</span></td>
@@ -564,24 +569,49 @@
                         </thead>
                         <tbody>
                             <tr>
+                                <td>P&P</td>
+                                <td>29</td>
+                                <td>85.29%</td>
+                            </tr>
+                            <tr>
+                                <td>VEP</td>
+                                <td>122</td>
+                                <td>84.72%</td>
+                            </tr>
+                            <tr>
                                 <td>IIOS</td>
                                 <td>5</td>
                                 <td>83.33%</td>
                             </tr>
                             <tr>
-                                <td>P&P</td>
-                                <td>28</td>
-                                <td>82.35%</td>
-                            </tr>
-                            <tr>
-                                <td>VEP</td>
-                                <td>115</td>
-                                <td>79.86%</td>
+                                <td>CG</td>
+                                <td>138</td>
+                                <td>83.13%</td>
                             </tr>
                             <tr>
                                 <td>PDX</td>
-                                <td>334</td>
-                                <td>72.29%</td>
+                                <td>371</td>
+                                <td>80.30%</td>
+                            </tr>
+                            <tr>
+                                <td>Marketing & Comms</td>
+                                <td>4</td>
+                                <td>80.00%</td>
+                            </tr>
+                            <tr>
+                                <td>CTREC</td>
+                                <td>96</td>
+                                <td>76.19%</td>
+                            </tr>
+                            <tr>
+                                <td>GTM Tech</td>
+                                <td>265</td>
+                                <td>76.15%</td>
+                            </tr>
+                            <tr>
+                                <td>Finance & Accounting</td>
+                                <td>26</td>
+                                <td>74.29%</td>
                             </tr>
                             <tr>
                                 <td>FinTech</td>
@@ -589,39 +619,14 @@
                                 <td>72.22%</td>
                             </tr>
                             <tr>
-                                <td>CG</td>
-                                <td>119</td>
-                                <td>71.69%</td>
-                            </tr>
-                            <tr>
-                                <td>GTM Tech</td>
-                                <td>245</td>
-                                <td>70.40%</td>
-                            </tr>
-                            <tr>
-                                <td>Finance & Accounting</td>
-                                <td>23</td>
-                                <td>65.71%</td>
-                            </tr>
-                            <tr>
-                                <td>CTREC</td>
-                                <td>78</td>
-                                <td>61.90%</td>
+                                <td>GBSG</td>
+                                <td>458</td>
+                                <td>70.90%</td>
                             </tr>
                             <tr>
                                 <td>CreditKarma</td>
                                 <td>27</td>
                                 <td>61.36%</td>
-                            </tr>
-                            <tr>
-                                <td>Marketing & Comms</td>
-                                <td>3</td>
-                                <td>60.00%</td>
-                            </tr>
-                            <tr>
-                                <td>GBSG</td>
-                                <td>373</td>
-                                <td>57.74%</td>
                             </tr>
                         </tbody>
                     </table>
@@ -651,9 +656,9 @@
         new Chart(communityParticipationCtx, {
             type: 'doughnut',
             data: {
-                labels: ['PM (Know Your Product + PE)', 'WE (Women Everywhere)', 'WCGB (Upcycling/Seedball)', 'iLead', 'PMO', 'WILL', 'xD', 'IAN'],
+                labels: ['PM (Product Management)', 'WE (Women Everywhere)', 'WCGB', 'iLead', 'PMO', 'xD', 'IAN', 'PE'],
                 datasets: [{
-                    data: [238, 238, 106, 66, 45, 19, 15, 9],
+                    data: [230, 220, 106, 66, 37, 15, 9, 8],
                     backgroundColor: communityColors,
                     borderWidth: 3,
                     borderColor: '#fff',
@@ -702,10 +707,10 @@
         new Chart(siteEventsCtx, {
             type: 'doughnut',
             data: {
-                labels: ['SOC (Site Events)', 'Cybersam (Site Tech)'],
+                labels: ['Diwali Sweet distribution', 'SOC (Site Events)', 'Cybersam (Site Tech)'],
                 datasets: [{
-                    data: [1293, 389],
-                    backgroundColor: siteColors.slice(0, 2),
+                    data: [2260, 1293, 389],
+                    backgroundColor: siteColors.slice(0, 3),
                     borderWidth: 3,
                     borderColor: '#fff',
                     hoverOffset: 8
@@ -717,7 +722,7 @@
                 plugins: {
                     legend: {
                         position: 'bottom',
-                        labels: { padding: 15 }
+                        labels: { padding: 15, font: { size: 10 } }
                     }
                 }
             }
@@ -730,7 +735,7 @@
             data: {
                 labels: ['Non-Tech (Site Events)', 'Tech (Site Tech Events)'],
                 datasets: [{
-                    data: [1293, 389],
+                    data: [3553, 389], // Non-Tech: 2260 (Diwali) + 1293 (SOC) = 3553, Tech: 389 (Cybersam)
                     backgroundColor: ['#F9C741', '#3BD8SE'],
                     borderWidth: 3,
                     borderColor: '#fff'
