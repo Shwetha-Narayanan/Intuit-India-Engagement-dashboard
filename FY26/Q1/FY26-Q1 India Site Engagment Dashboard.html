@@ -20,7 +20,7 @@
         }
         
         .dashboard-container {
-            max-width: 1900px;
+            max-width: 2200px;
             margin: 0 auto;
             background: rgba(255, 255, 255, 0.98);
             border-radius: 25px;
@@ -302,15 +302,15 @@
                 
                 <div class="metrics-row">
                     <div class="metric-card">
-                        <div class="metric-value">604</div>
+                        <div class="metric-value">611</div>
                         <div class="metric-label">Total Unique Attendees</div>
                     </div>
                     <div class="metric-card">
-                        <div class="metric-value">7</div>
+                        <div class="metric-value">8</div>
                         <div class="metric-label">Active Communities</div>
                     </div>
                     <div class="metric-card">
-                        <div class="metric-value">12</div>
+                        <div class="metric-value">13</div>
                         <div class="metric-label">Events Conducted</div>
                     </div>
                 </div>
@@ -402,6 +402,11 @@
                                 <td>IAN mentorship</td>
                                 <td>9</td>
                                 <td><span class="event-type-badge non-tech-badge">Non Tech</span></td>
+                            </tr>
+                            <tr>
+                                <td>Global PE quarterly meetup</td>
+                                <td>8</td>
+                                <td><span class="event-type-badge tech-badge">Tech</span></td>
                             </tr>
                         </tbody>
                     </table>
@@ -638,7 +643,7 @@
         Chart.defaults.plugins.legend.labels.usePointStyle = true;
 
         // Color palettes - Updated with primary and secondary colors
-        const communityColors = ['#236CFF', '#00254A', '#3BD8SE', '#F9C741', '#81f2fe', '#FFD1E9', '#AC6500']; // Super Blue, Blueberry-110, Kiwi-50, Honey-40, Agave-30, Dragonfruit-20, Honey-80
+        const communityColors = ['#236CFF', '#00254A', '#3BD8SE', '#F9C741', '#81f2fe', '#FFD1E9', '#AC6500', '#6f42c1']; // Super Blue, Blueberry-110, Kiwi-50, Honey-40, Agave-30, Dragonfruit-20, Honey-80, Purple
         const siteColors = ['#007bff', '#28a745', '#ffc107', '#dc3545', '#6f42c1', '#fd7e14', '#20c997']; // Primary Blue, Success Green, Warning Yellow, Danger Red, Purple, Orange, Teal
 
         // Community Participation Chart
@@ -646,9 +651,9 @@
         new Chart(communityParticipationCtx, {
             type: 'doughnut',
             data: {
-                labels: ['WE (Women Everywhere)', 'PM (Know Your Product)', 'WCGB (Upcycling/Seedball)', 'iLead', 'PMO', 'xD', 'IAN'],
+                labels: ['PM (Know Your Product + PE)', 'WE (Women Everywhere)', 'WCGB (Upcycling/Seedball)', 'iLead', 'PMO', 'WILL', 'xD', 'IAN'],
                 datasets: [{
-                    data: [238, 230, 106, 66, 45, 15, 9],
+                    data: [238, 238, 106, 66, 45, 19, 15, 9],
                     backgroundColor: communityColors,
                     borderWidth: 3,
                     borderColor: '#fff',
@@ -674,7 +679,7 @@
             data: {
                 labels: ['Tech Events', 'Non-Tech Events'],
                 datasets: [{
-                    data: [290, 438], // Tech: 230+15+21+24=290, Non-Tech: 146+85+66+54+38+21+19+9=438
+                    data: [298, 438], // Tech: 230+15+21+24+8=298, Non-Tech: 146+85+66+54+38+21+19+9=438
                     backgroundColor: ['#3BD8SE', '#F9C741'],
                     borderWidth: 3,
                     borderColor: '#fff'
