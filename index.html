@@ -22,7 +22,7 @@
         }
         
         .container {
-            max-width: 1000px;
+            max-width: 700px;
             width: 100%;
             background: rgba(255, 255, 255, 0.98);
             border-radius: 25px;
@@ -36,7 +36,7 @@
         }
         
         .header h1 {
-            font-size: 3rem;
+            font-size: 2.8rem;
             font-weight: 800;
             background: linear-gradient(45deg, #236CFF, #00254A);
             background-clip: text;
@@ -51,84 +51,170 @@
             font-weight: 500;
         }
         
-        .dashboards {
-            display: grid;
+        .selector-container {
+            display: flex;
+            flex-direction: column;
             gap: 25px;
             margin-top: 40px;
         }
         
-        .dashboard-section {
-            background: #f8f9fa;
-            border-radius: 15px;
-            padding: 30px;
-            border-left: 5px solid #236CFF;
-        }
-        
-        .dashboard-section h2 {
-            color: #00254A;
-            font-size: 1.8rem;
-            margin-bottom: 20px;
+        .selector-group {
             display: flex;
-            align-items: center;
+            flex-direction: column;
             gap: 10px;
         }
         
-        .dashboard-section h2::before {
-            content: "📊";
-            font-size: 1.5rem;
-        }
-        
-        .dashboard-links {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        
-        .dashboard-link {
+        .selector-label {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #00254A;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            padding: 20px 25px;
-            background: white;
-            border-radius: 12px;
-            text-decoration: none;
+            gap: 8px;
+        }
+        
+        .selector-label::before {
+            content: "📊";
+            font-size: 1.2rem;
+        }
+        
+        .dropdown {
+            position: relative;
+            width: 100%;
+        }
+        
+        .dropdown-select {
+            width: 100%;
+            padding: 18px 50px 18px 20px;
+            font-size: 1.1rem;
+            font-family: inherit;
+            font-weight: 500;
             color: #00254A;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
             transition: all 0.3s ease;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-            border: 2px solid transparent;
         }
         
-        .dashboard-link:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(35, 108, 255, 0.2);
+        .dropdown-select:hover {
             border-color: #236CFF;
+            box-shadow: 0 4px 12px rgba(35, 108, 255, 0.15);
         }
         
-        .dashboard-link .link-content {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
+        .dropdown-select:focus {
+            outline: none;
+            border-color: #236CFF;
+            box-shadow: 0 0 0 3px rgba(35, 108, 255, 0.2);
         }
         
-        .dashboard-link .link-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #00254A;
+        .dropdown-select:disabled {
+            background: #f5f5f5;
+            color: #999;
+            cursor: not-allowed;
+            border-color: #e0e0e0;
         }
         
-        .dashboard-link .link-description {
-            font-size: 0.95rem;
-            color: #666;
-        }
-        
-        .dashboard-link .arrow {
-            font-size: 1.5rem;
+        .dropdown::after {
+            content: "▼";
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.8rem;
             color: #236CFF;
+            pointer-events: none;
             transition: transform 0.3s ease;
         }
         
-        .dashboard-link:hover .arrow {
+        .dropdown-select:focus + .dropdown-arrow,
+        .dropdown:has(.dropdown-select:focus)::after {
+            transform: translateY(-50%) rotate(180deg);
+        }
+        
+        .quarter-group {
+            opacity: 0.5;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+        
+        .quarter-group.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .view-button {
+            margin-top: 20px;
+            width: 100%;
+            padding: 18px 30px;
+            font-size: 1.2rem;
+            font-family: inherit;
+            font-weight: 700;
+            color: white;
+            background: linear-gradient(135deg, #236CFF 0%, #00254A 100%);
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(35, 108, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+        
+        .view-button.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .view-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(35, 108, 255, 0.4);
+        }
+        
+        .view-button:active {
+            transform: translateY(0);
+        }
+        
+        .view-button .arrow {
+            font-size: 1.3rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .view-button:hover .arrow {
             transform: translateX(5px);
+        }
+        
+        .selection-preview {
+            margin-top: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 12px;
+            text-align: center;
+            display: none;
+        }
+        
+        .selection-preview.show {
+            display: block;
+        }
+        
+        .selection-preview p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        .selection-preview .selected-path {
+            margin-top: 10px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #00254A;
         }
         
         .footer {
@@ -153,12 +239,14 @@
                 font-size: 1rem;
             }
             
-            .dashboard-section h2 {
-                font-size: 1.4rem;
+            .dropdown-select {
+                padding: 15px 45px 15px 18px;
+                font-size: 1rem;
             }
             
-            .dashboard-link .link-title {
-                font-size: 1rem;
+            .view-button {
+                padding: 15px 25px;
+                font-size: 1.1rem;
             }
         }
     </style>
@@ -170,33 +258,106 @@
             <p>Site Engagement Analytics & Reports</p>
         </div>
         
-        <div class="dashboards">
-            <div class="dashboard-section">
-                <h2>FY26</h2>
-                <div class="dashboard-links">
-                    <a href="FY26/Q1/FY26-Q1 India Site Engagment Dashboard.html" class="dashboard-link">
-                        <div class="link-content">
-                            <div class="link-title">Q1 Quarterly Dashboard</div>
-                            <div class="link-description">Complete overview of Q1 engagement metrics and analytics</div>
-                        </div>
-                        <span class="arrow">→</span>
-                    </a>
-                    
-                    <a href="FY26/Q2/FY26-Q2 India Site Engagement Dashboard.html" class="dashboard-link">
-                        <div class="link-content">
-                            <div class="link-title">Q2 Quarterly Dashboard</div>
-                            <div class="link-description">Complete overview of Q2 engagement metrics and analytics</div>
-                        </div>
-                        <span class="arrow">→</span>
-                    </a>
+        <div class="selector-container">
+            <div class="selector-group">
+                <label class="selector-label" for="year-select">Select Year</label>
+                <div class="dropdown">
+                    <select id="year-select" class="dropdown-select">
+                        <option value="">-- Select Year --</option>
+                        <option value="FY26">FY26</option>
+                    </select>
                 </div>
             </div>
+            
+            <div class="selector-group quarter-group" id="quarter-group">
+                <label class="selector-label" for="quarter-select">Select Quarter</label>
+                <div class="dropdown">
+                    <select id="quarter-select" class="dropdown-select" disabled>
+                        <option value="">-- Select Quarter --</option>
+                        <option value="Q1">Q1</option>
+                        <option value="Q2">Q2</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="selection-preview" id="selection-preview">
+                <p>You selected:</p>
+                <div class="selected-path" id="selected-path"></div>
+            </div>
+            
+            <button class="view-button" id="view-button" onclick="navigateToDashboard()">
+                View Dashboard <span class="arrow">→</span>
+            </button>
         </div>
         
         <div class="footer">
             <p>© Intuit India | Engagement Dashboard | FY26</p>
         </div>
     </div>
+
+    <script>
+        // Dashboard URLs mapping
+        const dashboardUrls = {
+            'FY26': {
+                'Q1': 'FY26/Q1/FY26-Q1 India Site Engagment Dashboard.html',
+                'Q2': 'FY26/Q2/FY26-Q2 India Site Engagement Dashboard.html'
+            }
+        };
+
+        const yearSelect = document.getElementById('year-select');
+        const quarterSelect = document.getElementById('quarter-select');
+        const quarterGroup = document.getElementById('quarter-group');
+        const viewButton = document.getElementById('view-button');
+        const selectionPreview = document.getElementById('selection-preview');
+        const selectedPath = document.getElementById('selected-path');
+
+        // Year selection handler
+        yearSelect.addEventListener('change', function() {
+            const selectedYear = this.value;
+            
+            if (selectedYear) {
+                // Enable quarter selection
+                quarterGroup.classList.add('active');
+                quarterSelect.disabled = false;
+                quarterSelect.value = ''; // Reset quarter selection
+            } else {
+                // Disable quarter selection
+                quarterGroup.classList.remove('active');
+                quarterSelect.disabled = true;
+                quarterSelect.value = '';
+            }
+            
+            // Hide button and preview
+            viewButton.classList.remove('active');
+            selectionPreview.classList.remove('show');
+        });
+
+        // Quarter selection handler
+        quarterSelect.addEventListener('change', function() {
+            const selectedYear = yearSelect.value;
+            const selectedQuarter = this.value;
+            
+            if (selectedYear && selectedQuarter) {
+                // Show button and preview
+                viewButton.classList.add('active');
+                selectionPreview.classList.add('show');
+                selectedPath.textContent = `${selectedYear} → ${selectedQuarter} Quarterly Dashboard`;
+            } else {
+                // Hide button and preview
+                viewButton.classList.remove('active');
+                selectionPreview.classList.remove('show');
+            }
+        });
+
+        // Navigate to dashboard
+        function navigateToDashboard() {
+            const selectedYear = yearSelect.value;
+            const selectedQuarter = quarterSelect.value;
+            
+            if (selectedYear && selectedQuarter && dashboardUrls[selectedYear] && dashboardUrls[selectedYear][selectedQuarter]) {
+                window.location.href = dashboardUrls[selectedYear][selectedQuarter];
+            }
+        }
+    </script>
 </body>
 </html>
-
