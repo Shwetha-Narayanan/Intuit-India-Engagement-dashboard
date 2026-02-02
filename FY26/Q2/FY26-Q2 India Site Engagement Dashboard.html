@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engagement Dashboard - FY26 Q2</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #236CFF 0%, #00254A 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #236CFF, #00254A);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            color: #666;
+        }
+        
+        .period-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #236CFF 0%, #00254A 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            margin-top: 15px;
+        }
+        
+        .section {
+            margin-bottom: 50px;
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #236CFF;
+        }
+        
+        .section-header h2 {
+            font-size: 1.8rem;
+            color: #00254A;
+        }
+        
+        .section-icon {
+            font-size: 1.8rem;
+        }
+        
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .metric-card {
+            background: linear-gradient(135deg, #236CFF 0%, #00254A 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(35, 108, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .metric-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .metric-card.green {
+            background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.2);
+        }
+        
+        .metric-card.purple {
+            background: linear-gradient(135deg, #8B5CF6 0%, #6D28D9 100%);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.2);
+        }
+        
+        .metric-card.orange {
+            background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.2);
+        }
+        
+        .metric-card h3 {
+            font-size: 2.5rem;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+        
+        .metric-card p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+        
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .chart-container {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e5e7eb;
+        }
+        
+        .chart-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .chart-canvas {
+            position: relative;
+            height: 300px;
+        }
+        
+        .tables-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 25px;
+        }
+        
+        .table-container {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e5e7eb;
+            overflow-x: auto;
+        }
+        
+        .table-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        th {
+            background: linear-gradient(135deg, #236CFF 0%, #00254A 100%);
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        th:first-child {
+            border-radius: 8px 0 0 0;
+        }
+        
+        th:last-child {
+            border-radius: 0 8px 0 0;
+        }
+        
+        tr:hover {
+            background-color: #f8fafc;
+        }
+        
+        td {
+            font-size: 0.9rem;
+            color: #374151;
+        }
+        
+        .event-type {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .event-type.tech {
+            background: #DBEAFE;
+            color: #1D4ED8;
+        }
+        
+        .event-type.non-tech {
+            background: #D1FAE5;
+            color: #047857;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 25px;
+            border-top: 2px solid #e5e7eb;
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .charts-grid, .tables-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .metric-card h3 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="header">
+            <h1>Engagement Dashboard</h1>
+            <p>Comprehensive analysis of Community and Site-wide engagement initiatives</p>
+            <div class="period-badge">FY26 Q2 (November 2025 - January 2026)</div>
+        </div>
+        
+        <!-- Community Events Section -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">🏘️</span>
+                <h2>Community Events</h2>
+            </div>
+            <p style="color: #666; margin-bottom: 20px;">Community-driven engagement initiatives</p>
+            
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <h3>397</h3>
+                    <p>Total Unique Attendees</p>
+                </div>
+                <div class="metric-card green">
+                    <h3>8</h3>
+                    <p>Total Communities</p>
+                </div>
+                <div class="metric-card purple">
+                    <h3>5</h3>
+                    <p>Active Communities</p>
+                </div>
+                <div class="metric-card orange">
+                    <h3>11</h3>
+                    <p>Events Conducted</p>
+                </div>
+            </div>
+            
+            <div class="charts-grid">
+                <div class="chart-container">
+                    <div class="chart-title">Community Events Distribution</div>
+                    <div class="chart-canvas">
+                        <canvas id="communityDistChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <div class="chart-title">Community Event Types</div>
+                    <div class="chart-canvas">
+                        <canvas id="communityTypeChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tables-grid">
+                <div class="table-container">
+                    <div class="table-title">Event Participation</div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Event Name</th>
+                                <th>Total Attendees</th>
+                                <th>Event Type</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>GED Kick off 2025</td>
+                                <td>292</td>
+                                <td><span class="event-type non-tech">Non Tech</span></td>
+                            </tr>
+                            <tr>
+                                <td>Intuit PgM Summit</td>
+                                <td>158</td>
+                                <td><span class="event-type tech">Tech</span></td>
+                            </tr>
+                            <tr>
+                                <td>Tech Connect :: TARA (The AI Runbook Agent)</td>
+                                <td>114</td>
+                                <td><span class="event-type tech">Tech</span></td>
+                            </tr>
+                            <tr>
+                                <td>NGN- Insportsathon</td>
+                                <td>65</td>
+                                <td><span class="event-type non-tech">Non Tech</span></td>
+                            </tr>
+                            <tr>
+                                <td>Know Your Product : Revolutionize Your Code Reviews with AI</td>
+                                <td>58</td>
+                                <td><span class="event-type tech">Tech</span></td>
+                            </tr>
+                            <tr>
+                                <td>My India PM Community meeting with Keela Robison</td>
+                                <td>31</td>
+                                <td><span class="event-type tech">Tech</span></td>
+                            </tr>
+                            <tr>
+                                <td>Season of Giving</td>
+                                <td>28</td>
+                                <td><span class="event-type non-tech">Non Tech</span></td>
+                            </tr>
+                            <tr>
+                                <td>PE & DE Community Meetup</td>
+                                <td>26</td>
+                                <td><span class="event-type tech">Tech</span></td>
+                            </tr>
+                            <tr>
+                                <td>PMO Power Hour :: Followed by Socials</td>
+                                <td>25</td>
+                                <td><span class="event-type tech">Tech</span></td>
+                            </tr>
+                            <tr>
+                                <td>NGN-NCG connect</td>
+                                <td>19</td>
+                                <td><span class="event-type non-tech">Non Tech</span></td>
+                            </tr>
+                            <tr>
+                                <td>AMA Session with Carolyn Yee & Megan Clapp</td>
+                                <td>17</td>
+                                <td><span class="event-type tech">Tech</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="table-container">
+                    <div class="table-title">BU Unique Attendees</div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Business Unit</th>
+                                <th>Unique Attendees</th>
+                                <th>Participation %</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>PDX</td>
+                                <td>111</td>
+                                <td>24.23%</td>
+                            </tr>
+                            <tr>
+                                <td>GTM Tech</td>
+                                <td>93</td>
+                                <td>25.90%</td>
+                            </tr>
+                            <tr>
+                                <td>Mid Market</td>
+                                <td>55</td>
+                                <td>13.68%</td>
+                            </tr>
+                            <tr>
+                                <td>CG</td>
+                                <td>25</td>
+                                <td>12.32%</td>
+                            </tr>
+                            <tr>
+                                <td>VEP</td>
+                                <td>20</td>
+                                <td>12.42%</td>
+                            </tr>
+                            <tr>
+                                <td>FinTech</td>
+                                <td>17</td>
+                                <td>11.72%</td>
+                            </tr>
+                            <tr>
+                                <td>CTREC</td>
+                                <td>11</td>
+                                <td>10.28%</td>
+                            </tr>
+                            <tr>
+                                <td>SBG</td>
+                                <td>8</td>
+                                <td>4.97%</td>
+                            </tr>
+                            <tr>
+                                <td>Customer Success</td>
+                                <td>1</td>
+                                <td>33.33%</td>
+                            </tr>
+                            <tr>
+                                <td>Finance & Accounting</td>
+                                <td>1</td>
+                                <td>2.78%</td>
+                            </tr>
+                            <tr>
+                                <td>P&P</td>
+                                <td>1</td>
+                                <td>2.86%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Site Events Section -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">🏢</span>
+                <h2>Site Events</h2>
+            </div>
+            <p style="color: #666; margin-bottom: 20px;">Organization-wide engagement initiatives</p>
+            
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <h3>1,333</h3>
+                    <p>Total Attendees</p>
+                </div>
+                <div class="metric-card green">
+                    <h3>180</h3>
+                    <p>Total Unique Attendees</p>
+                </div>
+                <div class="metric-card purple">
+                    <h3>1</h3>
+                    <p>Site Events</p>
+                </div>
+            </div>
+            
+            <div class="charts-grid">
+                <div class="chart-container">
+                    <div class="chart-title">Site Events Distribution</div>
+                    <div class="chart-canvas">
+                        <canvas id="siteDistChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <div class="chart-title">Site Event Types</div>
+                    <div class="chart-canvas">
+                        <canvas id="siteTypeChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tables-grid">
+                <div class="table-container">
+                    <div class="table-title">Event Participation</div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Event Name</th>
+                                <th>Total Attendees</th>
+                                <th>Event Type</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Employee Celebrations</td>
+                                <td>1,242</td>
+                                <td><span class="event-type non-tech">Non Tech</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="table-container">
+                    <div class="table-title">BU Unique Attendees</div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Business Unit</th>
+                                <th>Unique Attendees</th>
+                                <th>Participation %</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>CG</td>
+                                <td>29</td>
+                                <td>14.29%</td>
+                            </tr>
+                            <tr>
+                                <td>Mid Market</td>
+                                <td>28</td>
+                                <td>6.97%</td>
+                            </tr>
+                            <tr>
+                                <td>GTM Tech</td>
+                                <td>16</td>
+                                <td>4.46%</td>
+                            </tr>
+                            <tr>
+                                <td>PDX</td>
+                                <td>10</td>
+                                <td>2.18%</td>
+                            </tr>
+                            <tr>
+                                <td>SBG</td>
+                                <td>8</td>
+                                <td>5.93%</td>
+                            </tr>
+                            <tr>
+                                <td>VEP</td>
+                                <td>5</td>
+                                <td>3.07%</td>
+                            </tr>
+                            <tr>
+                                <td>FinTech</td>
+                                <td>2</td>
+                                <td>1.38%</td>
+                            </tr>
+                            <tr>
+                                <td>CTREC</td>
+                                <td>1</td>
+                                <td>0.93%</td>
+                            </tr>
+                            <tr>
+                                <td>P&P</td>
+                                <td>1</td>
+                                <td>2.86%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p><strong>Engagement Dashboard</strong></p>
+            <p>Comprehensive analysis of community-driven and site-wide engagement initiatives</p>
+            <p>Period: FY26 Q2 (November 2025 - January 2026) | Data Source: FY26 Q2 Dashboard CSV | Last Updated: January 2026</p>
+        </div>
+    </div>
+
+    <script>
+        // Chart.js configuration
+        Chart.defaults.font.family = 'Segoe UI';
+        Chart.defaults.font.size = 12;
+
+        // Community Events Distribution Chart
+        const communityDistCtx = document.getElementById('communityDistChart').getContext('2d');
+        new Chart(communityDistCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['GED Kick off', 'PgM Summit', 'Tech Connect TARA', 'NGN Insportsathon', 'KYP AI', 'Others'],
+                datasets: [{
+                    data: [292, 158, 114, 65, 58, 146],
+                    backgroundColor: ['#236CFF', '#00254A', '#10B981', '#8B5CF6', '#F59E0B', '#EC4899'],
+                    borderWidth: 3,
+                    borderColor: '#fff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 15,
+                            usePointStyle: true
+                        }
+                    }
+                }
+            }
+        });
+
+        // Community Event Types Chart
+        const communityTypeCtx = document.getElementById('communityTypeChart').getContext('2d');
+        new Chart(communityTypeCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Tech', 'Non Tech'],
+                datasets: [{
+                    data: [7, 4],
+                    backgroundColor: ['#236CFF', '#10B981'],
+                    borderWidth: 3,
+                    borderColor: '#fff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 15,
+                            usePointStyle: true
+                        }
+                    }
+                }
+            }
+        });
+
+        // Site Events Distribution Chart
+        const siteDistCtx = document.getElementById('siteDistChart').getContext('2d');
+        new Chart(siteDistCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Employee Celebrations'],
+                datasets: [{
+                    data: [1242],
+                    backgroundColor: ['#236CFF'],
+                    borderWidth: 3,
+                    borderColor: '#fff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 15,
+                            usePointStyle: true
+                        }
+                    }
+                }
+            }
+        });
+
+        // Site Event Types Chart
+        const siteTypeCtx = document.getElementById('siteTypeChart').getContext('2d');
+        new Chart(siteTypeCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Non Tech'],
+                datasets: [{
+                    data: [1],
+                    backgroundColor: ['#10B981'],
+                    borderWidth: 3,
+                    borderColor: '#fff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 15,
+                            usePointStyle: true
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
