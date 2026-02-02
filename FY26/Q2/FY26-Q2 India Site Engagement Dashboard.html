@@ -274,19 +274,19 @@
             
             <div class="metrics-grid">
                 <div class="metric-card">
-                    <h3>397</h3>
+                    <h3>238</h3>
                     <p>Total Unique Attendees</p>
                 </div>
                 <div class="metric-card green">
-                    <h3>8</h3>
-                    <p>Total Communities</p>
-                </div>
-                <div class="metric-card purple">
                     <h3>5</h3>
                     <p>Active Communities</p>
                 </div>
+                <div class="metric-card purple">
+                    <h3>573</h3>
+                    <p>Total Attendees</p>
+                </div>
                 <div class="metric-card orange">
-                    <h3>11</h3>
+                    <h3>12</h3>
                     <p>Events Conducted</p>
                 </div>
             </div>
@@ -331,6 +331,11 @@
                             <tr>
                                 <td>Tech Connect :: TARA (The AI Runbook Agent)</td>
                                 <td>114</td>
+                                <td><span class="event-type tech">Tech</span></td>
+                            </tr>
+                            <tr>
+                                <td>Platform Engineering & AI Meetup - India</td>
+                                <td>92</td>
                                 <td><span class="event-type tech">Tech</span></td>
                             </tr>
                             <tr>
@@ -390,58 +395,48 @@
                         <tbody>
                             <tr>
                                 <td>PDX</td>
-                                <td>111</td>
-                                <td>24.23%</td>
+                                <td>60</td>
+                                <td>13.36%</td>
                             </tr>
                             <tr>
                                 <td>GTM Tech</td>
-                                <td>93</td>
-                                <td>25.90%</td>
+                                <td>48</td>
+                                <td>13.19%</td>
                             </tr>
                             <tr>
                                 <td>Mid Market</td>
-                                <td>55</td>
-                                <td>13.68%</td>
-                            </tr>
-                            <tr>
-                                <td>CG</td>
-                                <td>25</td>
-                                <td>12.32%</td>
+                                <td>42</td>
+                                <td>10.42%</td>
                             </tr>
                             <tr>
                                 <td>VEP</td>
-                                <td>20</td>
-                                <td>12.42%</td>
+                                <td>13</td>
+                                <td>7.98%</td>
                             </tr>
                             <tr>
-                                <td>FinTech</td>
-                                <td>17</td>
-                                <td>11.72%</td>
+                                <td>CG</td>
+                                <td>9</td>
+                                <td>4.43%</td>
                             </tr>
                             <tr>
                                 <td>CTREC</td>
-                                <td>11</td>
-                                <td>10.28%</td>
+                                <td>8</td>
+                                <td>7.48%</td>
                             </tr>
                             <tr>
                                 <td>SBG</td>
                                 <td>8</td>
-                                <td>4.97%</td>
+                                <td>5.93%</td>
+                            </tr>
+                            <tr>
+                                <td>FinTech</td>
+                                <td>7</td>
+                                <td>4.67%</td>
                             </tr>
                             <tr>
                                 <td>Customer Success</td>
                                 <td>1</td>
                                 <td>33.33%</td>
-                            </tr>
-                            <tr>
-                                <td>Finance & Accounting</td>
-                                <td>1</td>
-                                <td>2.78%</td>
-                            </tr>
-                            <tr>
-                                <td>P&P</td>
-                                <td>1</td>
-                                <td>2.86%</td>
                             </tr>
                         </tbody>
                     </table>
@@ -459,11 +454,11 @@
             
             <div class="metrics-grid">
                 <div class="metric-card">
-                    <h3>1,333</h3>
+                    <h3>1,627</h3>
                     <p>Total Attendees</p>
                 </div>
                 <div class="metric-card green">
-                    <h3>180</h3>
+                    <h3>195</h3>
                     <p>Total Unique Attendees</p>
                 </div>
                 <div class="metric-card purple">
@@ -527,17 +522,17 @@
                             <tr>
                                 <td>Mid Market</td>
                                 <td>28</td>
-                                <td>6.97%</td>
+                                <td>6.95%</td>
                             </tr>
                             <tr>
                                 <td>GTM Tech</td>
-                                <td>16</td>
-                                <td>4.46%</td>
+                                <td>18</td>
+                                <td>4.95%</td>
                             </tr>
                             <tr>
                                 <td>PDX</td>
-                                <td>10</td>
-                                <td>2.18%</td>
+                                <td>11</td>
+                                <td>2.45%</td>
                             </tr>
                             <tr>
                                 <td>SBG</td>
@@ -551,8 +546,8 @@
                             </tr>
                             <tr>
                                 <td>FinTech</td>
-                                <td>2</td>
-                                <td>1.38%</td>
+                                <td>3</td>
+                                <td>2.00%</td>
                             </tr>
                             <tr>
                                 <td>CTREC</td>
@@ -562,7 +557,7 @@
                             <tr>
                                 <td>P&P</td>
                                 <td>1</td>
-                                <td>2.86%</td>
+                                <td>2.56%</td>
                             </tr>
                         </tbody>
                     </table>
@@ -587,9 +582,9 @@
         new Chart(communityDistCtx, {
             type: 'doughnut',
             data: {
-                labels: ['GED Kick off', 'PgM Summit', 'Tech Connect TARA', 'NGN Insportsathon', 'KYP AI', 'Others'],
+                labels: ['GED Kick off', 'PgM Summit', 'Tech Connect TARA', 'PE & AI Meetup', 'NGN Insportsathon', 'Others'],
                 datasets: [{
-                    data: [292, 158, 114, 65, 58, 146],
+                    data: [292, 158, 114, 92, 65, 204],
                     backgroundColor: ['#236CFF', '#00254A', '#10B981', '#8B5CF6', '#F59E0B', '#EC4899'],
                     borderWidth: 3,
                     borderColor: '#fff'
@@ -617,7 +612,7 @@
             data: {
                 labels: ['Tech', 'Non Tech'],
                 datasets: [{
-                    data: [7, 4],
+                    data: [8, 4],
                     backgroundColor: ['#236CFF', '#10B981'],
                     borderWidth: 3,
                     borderColor: '#fff'
