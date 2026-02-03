@@ -541,10 +541,10 @@
                             <tr>
                                 <td>GED Kick off 2025</td>
                                 <td>292</td>
-                                <td><span class="event-type-badge non-tech-badge">Non Tech</span></td>
+                                <td><span class="event-type-badge tech-badge">Tech</span></td>
                             </tr>
                             <tr>
-                                <td>Platform Engineering & AI Meetup - India</td>
+                                <td>Open Source Meetup</td>
                                 <td>92</td>
                                 <td><span class="event-type-badge tech-badge">Tech</span></td>
                             </tr>
@@ -698,10 +698,10 @@
         new Chart(siteEventsCtx, {
             type: 'doughnut',
             data: {
-                labels: ['Employee Celebrations', 'GED Kick off 2025', 'PE & AI Meetup'],
+                labels: ['Employee Celebrations', 'GED Kick off 2025', 'Open Source Meetup'],
                 datasets: [{
                     data: [1242, 292, 92],
-                    backgroundColor: ['#00254A', '#81f2fe', '#236CFF'],
+                    backgroundColor: ['#00254A', '#236CFF', '#81f2fe'],
                     borderWidth: 3,
                     borderColor: '#fff',
                     hoverOffset: 8
@@ -721,14 +721,14 @@
 
         // Site Event Types Chart
         const siteEventTypesCtx = document.getElementById('siteEventTypesChart').getContext('2d');
-        const siteParticipants = { 'Non Tech': 1534, 'Tech': 92 };
+        const siteParticipants = { 'Tech': 384, 'Non Tech': 1242 };
         new Chart(siteEventTypesCtx, {
             type: 'pie',
             data: {
-                labels: ['Non Tech', 'Tech'],
+                labels: ['Tech', 'Non Tech'],
                 datasets: [{
                     data: [2, 1],
-                    backgroundColor: ['#00254A', '#236CFF'],
+                    backgroundColor: ['#236CFF', '#00254A'],
                     borderWidth: 3,
                     borderColor: '#fff'
                 }]
