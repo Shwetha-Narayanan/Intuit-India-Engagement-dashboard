@@ -320,7 +320,7 @@
                 
                 <div class="metrics-row">
                     <div class="metric-card">
-                        <div class="metric-value">573</div>
+                        <div class="metric-value">587</div>
                         <div class="metric-label">Total Attendees</div>
                     </div>
                     <div class="metric-card">
@@ -332,7 +332,7 @@
                         <div class="metric-label">Active Communities</div>
                     </div>
                     <div class="metric-card">
-                        <div class="metric-value">10</div>
+                        <div class="metric-value">11</div>
                         <div class="metric-label">Events Conducted</div>
                     </div>
                 </div>
@@ -413,6 +413,11 @@
                                 <td>AMA Session with Carolyn Yee & Megan Clapp</td>
                                 <td>17</td>
                                 <td><span class="event-type-badge tech-badge">Tech</span></td>
+                            </tr>
+                            <tr>
+                                <td>TA Sensitization</td>
+                                <td>14</td>
+                                <td><span class="event-type-badge non-tech-badge">Non Tech</span></td>
                             </tr>
                         </tbody>
                     </table>
@@ -536,7 +541,7 @@
                             <tr>
                                 <td>GED Kick off 2025</td>
                                 <td>292</td>
-                                <td><span class="event-type-badge tech-badge">Tech</span></td>
+                                <td><span class="event-type-badge non-tech-badge">Non Tech</span></td>
                             </tr>
                             <tr>
                                 <td>Platform Engineering & AI Meetup - India</td>
@@ -631,10 +636,10 @@
         new Chart(communityParticipationCtx, {
             type: 'doughnut',
             data: {
-                labels: ['PM', 'PgM', 'NGN', 'WCGB', 'PE'],
+                labels: ['NGN', 'PgM', 'BCCC', 'PM', 'WCGB', 'PE', 'IAN'],
                 datasets: [{
-                    data: [197, 164, 84, 28, 26],
-                    backgroundColor: ['#236CFF', '#00254A', '#81f2fe', '#C2F5FF', '#000000'],
+                    data: [224, 164, 114, 89, 28, 26, 14],
+                    backgroundColor: ['#236CFF', '#00254A', '#81f2fe', '#C2F5FF', '#000000', '#EFF4F9', '#F4F4EF'],
                     borderWidth: 3,
                     borderColor: '#fff',
                     hoverOffset: 8
@@ -659,7 +664,7 @@
             data: {
                 labels: ['Tech', 'Non Tech'],
                 datasets: [{
-                    data: [7, 3],
+                    data: [7, 4],
                     backgroundColor: ['#236CFF', '#00254A'],
                     borderWidth: 3,
                     borderColor: '#fff'
@@ -685,7 +690,7 @@
                 labels: ['Employee Celebrations', 'GED Kick off 2025', 'PE & AI Meetup'],
                 datasets: [{
                     data: [1242, 292, 92],
-                    backgroundColor: ['#00254A', '#236CFF', '#81f2fe'],
+                    backgroundColor: ['#00254A', '#81f2fe', '#236CFF'],
                     borderWidth: 3,
                     borderColor: '#fff',
                     hoverOffset: 8
@@ -703,15 +708,15 @@
             }
         });
 
-        // Site Event Types Chart
+        // Site Event Types Chart - showing total participants
         const siteEventTypesCtx = document.getElementById('siteEventTypesChart').getContext('2d');
         new Chart(siteEventTypesCtx, {
             type: 'pie',
             data: {
-                labels: ['Tech', 'Non Tech'],
+                labels: ['Non Tech (1,534 participants)', 'Tech (92 participants)'],
                 datasets: [{
-                    data: [2, 1],
-                    backgroundColor: ['#236CFF', '#00254A'],
+                    data: [1534, 92],
+                    backgroundColor: ['#00254A', '#236CFF'],
                     borderWidth: 3,
                     borderColor: '#fff'
                 }]
@@ -723,6 +728,13 @@
                     legend: {
                         position: 'bottom',
                         labels: { padding: 15 }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.label + ': ' + context.raw.toLocaleString() + ' participants';
+                            }
+                        }
                     }
                 }
             }
