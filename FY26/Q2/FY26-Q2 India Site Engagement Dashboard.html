@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Engagement Dashboard - FY26 Q2</title>
+    <title>Engagement Dashboard</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         * {
@@ -79,12 +79,12 @@
             overflow: hidden;
         }
         
-        .site-section {
-            border-top-color: #00254A;
-        }
-        
         .community-section {
             border-top-color: #236CFF;
+        }
+        
+        .site-section {
+            border-top-color: #007bff;
         }
         
         .section-header {
@@ -98,12 +98,12 @@
             margin-bottom: 10px;
         }
         
-        .site-section .section-title {
+        .community-section .section-title {
             color: #236CFF;
         }
         
-        .community-section .section-title {
-            color: #236CFF;
+        .site-section .section-title {
+            color: #007bff;
         }
         
         .section-subtitle {
@@ -114,10 +114,15 @@
         
         .metrics-row {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
             margin-bottom: 25px;
             width: 100%;
+        }
+        
+        .community-section .metrics-row {
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
         }
         
         .metric-card {
@@ -133,12 +138,12 @@
             justify-content: center;
         }
         
-        .site-section .metric-card {
-            border-left-color: #00254A;
-        }
-        
         .community-section .metric-card {
             border-left-color: #236CFF;
+        }
+        
+        .site-section .metric-card {
+            border-left-color: #007bff;
         }
         
         .metric-card:hover {
@@ -197,7 +202,6 @@
             overflow-x: auto;
             width: 100%;
             max-width: 100%;
-            margin-top: 20px;
         }
         
         .table-title {
@@ -223,14 +227,7 @@
             font-size: 0.9rem;
         }
         
-        .site-section th {
-            background: #00254A;
-            color: white;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-        
-        .community-section th {
+        th {
             background: #236CFF;
             color: white;
             font-weight: 600;
@@ -263,6 +260,15 @@
             color: white;
         }
         
+        .nps-pending {
+            color: #ffc107;
+            font-weight: 600;
+        }
+        
+        .full-width {
+            grid-column: 1 / -1;
+        }
+        
         .footer {
             text-align: center;
             margin-top: 50px;
@@ -281,10 +287,6 @@
             .charts-grid {
                 grid-template-columns: 1fr;
             }
-            
-            .metrics-row {
-                grid-template-columns: repeat(2, 1fr);
-            }
         }
         
         @media (max-width: 768px) {
@@ -294,10 +296,6 @@
             
             .header h1 {
                 font-size: 2.5rem;
-            }
-            
-            .metrics-row {
-                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -311,7 +309,7 @@
         </div>
         
         <div class="main-sections">
-            <!-- COMMUNITY EVENTS SECTION - LEFT -->
+            <!-- COMMUNITY EVENTS SECTION -->
             <div class="section-container community-section">
                 <div class="section-header">
                     <h2 class="section-title">🏘️ Community Events</h2>
@@ -320,12 +318,12 @@
                 
                 <div class="metrics-row">
                     <div class="metric-card">
-                        <div class="metric-value">741</div>
-                        <div class="metric-label">Total Attendees</div>
-                    </div>
-                    <div class="metric-card">
                         <div class="metric-value">334</div>
                         <div class="metric-label">Total Unique Attendees</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">14</div>
+                        <div class="metric-label">Total Communities</div>
                     </div>
                     <div class="metric-card">
                         <div class="metric-value">7</div>
@@ -353,7 +351,8 @@
                     </div>
                 </div>
                 
-                <div class="data-table">
+                
+                <div class="data-table" style="margin-top: 20px;">
                     <div class="table-title">Event Participation</div>
                     <table>
                         <thead>
@@ -365,6 +364,11 @@
                         </thead>
                         <tbody>
                             <tr>
+                                <td>NGN- Insportsathon</td>
+                                <td>210</td>
+                                <td><span class="event-type-badge non-tech-badge">Non Tech</span></td>
+                            </tr>
+                            <tr>
                                 <td>Intuit PgM Summit</td>
                                 <td>158</td>
                                 <td><span class="event-type-badge tech-badge">Tech</span></td>
@@ -373,11 +377,6 @@
                                 <td>Tech Connect :: TARA (The AI Runbook Agent)</td>
                                 <td>114</td>
                                 <td><span class="event-type-badge tech-badge">Tech</span></td>
-                            </tr>
-                            <tr>
-                                <td>NGN- Insportsathon</td>
-                                <td>65</td>
-                                <td><span class="event-type-badge non-tech-badge">Non Tech</span></td>
                             </tr>
                             <tr>
                                 <td>Know Your Product : Revolutionize Your Code Reviews with AI</td>
@@ -423,8 +422,8 @@
                     </table>
                 </div>
                 
-                <div class="data-table">
-                    <div class="table-title">BU Unique Attendees</div>
+                <div class="data-table" style="margin-top: 20px;">
+                    <div class="table-title">BU Unique attendees</div>
                     <table>
                         <thead>
                             <tr>
@@ -494,14 +493,14 @@
                 </div>
             </div>
             
-            <!-- SITE EVENTS SECTION - RIGHT -->
+            <!-- SITE EVENTS SECTION -->
             <div class="section-container site-section">
                 <div class="section-header">
                     <h2 class="section-title">🏢 Site Events</h2>
                     <p class="section-subtitle">Organization-wide engagement initiatives</p>
                 </div>
                 
-                <div class="metrics-row" style="grid-template-columns: repeat(3, 1fr);">
+                <div class="metrics-row">
                     <div class="metric-card">
                         <div class="metric-value">1,627</div>
                         <div class="metric-label">Total Attendees</div>
@@ -527,12 +526,12 @@
                     <div class="chart-container">
                         <div class="chart-title">Site Event Types</div>
                         <div class="chart-canvas">
-                            <canvas id="siteEventTypesChart"></canvas>
+                            <canvas id="siteCategoriesChart"></canvas>
                         </div>
                     </div>
                 </div>
                 
-                <div class="data-table">
+                <div class="data-table" style="margin-top: 20px;">
                     <div class="table-title">Event Participation</div>
                     <table>
                         <thead>
@@ -562,8 +561,8 @@
                     </table>
                 </div>
                 
-                <div class="data-table">
-                    <div class="table-title">BU Unique Attendees</div>
+                <div class="data-table" style="margin-top: 20px;">
+                    <div class="table-title">BU Unique attendees</div>
                     <table>
                         <thead>
                             <tr>
@@ -637,11 +636,11 @@
         Chart.defaults.font.size = 12;
         Chart.defaults.plugins.legend.labels.usePointStyle = true;
 
-        // Color palettes - Primary colors only
-        const communityColors = ['#236CFF', '#00254A', '#81f2fe', '#C2F5FF', '#4D8FFF', '#5BA3FF'];
-        const siteColors = ['#00254A', '#236CFF', '#81f2fe', '#C2F5FF'];
+        // Color palettes - Primary colors only from Primary colours.png
+        const communityColors = ['#236CFF', '#00254A', '#81f2fe', '#C2F5FF', '#4D8FFF', '#5BA3FF', '#1E5BB8', '#0D3B7A'];
+        const siteColors = ['#236CFF', '#00254A', '#81f2fe', '#C2F5FF', '#EFF4F9', '#F4F4EF', '#000000'];
 
-        // Community Participation Chart
+        // Community Participation Chart - Community Wise Total Attendees Q2
         const communityParticipationCtx = document.getElementById('communityParticipationChart').getContext('2d');
         new Chart(communityParticipationCtx, {
             type: 'doughnut',
@@ -649,7 +648,7 @@
                 labels: ['NGN', 'PgM', 'BCCC', 'PM', 'WCGB', 'PE', 'IAN'],
                 datasets: [{
                     data: [224, 164, 114, 89, 28, 26, 14],
-                    backgroundColor: ['#236CFF', '#00254A', '#81f2fe', '#C2F5FF', '#000000', '#EFF4F9', '#F4F4EF'],
+                    backgroundColor: communityColors,
                     borderWidth: 3,
                     borderColor: '#fff',
                     hoverOffset: 8
@@ -661,20 +660,20 @@
                 plugins: {
                     legend: {
                         position: 'bottom',
-                        labels: { padding: 8, font: { size: 9 }, boxWidth: 12, boxHeight: 12 }
+                        labels: { padding: 8, font: { size: 8 }, boxWidth: 12, boxHeight: 12 }
                     }
                 }
             }
         });
 
-        // Community Event Types Chart - using participants as metric
+        // Community Event Types Chart
         const communityEventTypesCtx = document.getElementById('communityEventTypesChart').getContext('2d');
         new Chart(communityEventTypesCtx, {
             type: 'pie',
             data: {
                 labels: ['Tech', 'Non Tech'],
                 datasets: [{
-                    data: [429, 126],
+                    data: [429, 271], // Tech: 158+114+58+31+26+25+17=429, Non-Tech: 210+28+19+14=271
                     backgroundColor: ['#236CFF', '#00254A'],
                     borderWidth: 3,
                     borderColor: '#fff'
@@ -687,19 +686,12 @@
                     legend: {
                         position: 'bottom',
                         labels: { padding: 15 }
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                return context.label + ': ' + context.raw.toLocaleString() + ' participants';
-                            }
-                        }
                     }
                 }
             }
         });
 
-        // Site Events Distribution Chart
+        // Site Events Chart
         const siteEventsCtx = document.getElementById('siteEventsChart').getContext('2d');
         new Chart(siteEventsCtx, {
             type: 'doughnut',
@@ -707,7 +699,7 @@
                 labels: ['Employee Celebrations', 'GED Kick off 2025', 'Open Source Meetup'],
                 datasets: [{
                     data: [1242, 292, 92],
-                    backgroundColor: ['#00254A', '#236CFF', '#81f2fe'],
+                    backgroundColor: siteColors.slice(0, 3),
                     borderWidth: 3,
                     borderColor: '#fff',
                     hoverOffset: 8
@@ -719,21 +711,21 @@
                 plugins: {
                     legend: {
                         position: 'bottom',
-                        labels: { padding: 10, font: { size: 10 } }
+                        labels: { padding: 15, font: { size: 10 } }
                     }
                 }
             }
         });
 
-        // Site Event Types Chart - using participants as metric
-        const siteEventTypesCtx = document.getElementById('siteEventTypesChart').getContext('2d');
-        new Chart(siteEventTypesCtx, {
+        // Site Categories Chart
+        const siteCategoriesCtx = document.getElementById('siteCategoriesChart').getContext('2d');
+        new Chart(siteCategoriesCtx, {
             type: 'pie',
             data: {
-                labels: ['Tech', 'Non Tech'],
+                labels: ['Non Tech', 'Tech'],
                 datasets: [{
-                    data: [384, 1242],
-                    backgroundColor: ['#236CFF', '#00254A'],
+                    data: [1242, 384], // Non-Tech: 1242 (Employee Celebrations), Tech: 292+92=384
+                    backgroundColor: ['#00254A', '#236CFF'],
                     borderWidth: 3,
                     borderColor: '#fff'
                 }]
@@ -745,17 +737,11 @@
                     legend: {
                         position: 'bottom',
                         labels: { padding: 15 }
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                return context.label + ': ' + context.raw.toLocaleString() + ' participants';
-                            }
-                        }
                     }
                 }
             }
         });
+
     </script>
 </body>
 </html>
