@@ -320,11 +320,11 @@
                 
                 <div class="metrics-row">
                     <div class="metric-card">
-                        <div class="metric-value">587</div>
+                        <div class="metric-value">741</div>
                         <div class="metric-label">Total Attendees</div>
                     </div>
                     <div class="metric-card">
-                        <div class="metric-value">238</div>
+                        <div class="metric-value">334</div>
                         <div class="metric-label">Total Unique Attendees</div>
                     </div>
                     <div class="metric-card">
@@ -657,15 +657,14 @@
             }
         });
 
-        // Community Event Types Chart
+        // Community Event Types Chart - using participants as metric
         const communityEventTypesCtx = document.getElementById('communityEventTypesChart').getContext('2d');
-        const communityParticipants = { 'Tech': 429, 'Non Tech': 126 };
         new Chart(communityEventTypesCtx, {
             type: 'pie',
             data: {
                 labels: ['Tech', 'Non Tech'],
                 datasets: [{
-                    data: [7, 4],
+                    data: [429, 126],
                     backgroundColor: ['#236CFF', '#00254A'],
                     borderWidth: 3,
                     borderColor: '#fff'
@@ -682,10 +681,7 @@
                     tooltip: {
                         callbacks: {
                             label: function(context) {
-                                const label = context.label;
-                                const events = context.raw;
-                                const participants = communityParticipants[label];
-                                return label + ': ' + events + ' events, ' + participants + ' participants';
+                                return context.label + ': ' + context.raw.toLocaleString() + ' participants';
                             }
                         }
                     }
@@ -719,15 +715,14 @@
             }
         });
 
-        // Site Event Types Chart
+        // Site Event Types Chart - using participants as metric
         const siteEventTypesCtx = document.getElementById('siteEventTypesChart').getContext('2d');
-        const siteParticipants = { 'Tech': 384, 'Non Tech': 1242 };
         new Chart(siteEventTypesCtx, {
             type: 'pie',
             data: {
                 labels: ['Tech', 'Non Tech'],
                 datasets: [{
-                    data: [2, 1],
+                    data: [384, 1242],
                     backgroundColor: ['#236CFF', '#00254A'],
                     borderWidth: 3,
                     borderColor: '#fff'
@@ -744,10 +739,7 @@
                     tooltip: {
                         callbacks: {
                             label: function(context) {
-                                const label = context.label;
-                                const events = context.raw;
-                                const participants = siteParticipants[label];
-                                return label + ': ' + events + ' events, ' + participants.toLocaleString() + ' participants';
+                                return context.label + ': ' + context.raw.toLocaleString() + ' participants';
                             }
                         }
                     }
