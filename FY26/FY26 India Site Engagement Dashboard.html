@@ -721,6 +721,8 @@
         const siteColors = ['#236CFF', '#00254A', '#81f2fe', '#C2F5FF', '#EFF4F9', '#F4F4EF', '#000000'];
 
         // Community Participation Chart - Community Wise Total Attendees FY26
+        // Tech (#236CFF - Super Blue): PM, PgM, BCCC, PE, xD
+        // Non Tech (#00254A - Blueberry): NGN, WE, WCGB, iLead, IAN
         const communityParticipationCtx = document.getElementById('communityParticipationChart').getContext('2d');
         new Chart(communityParticipationCtx, {
             type: 'doughnut',
@@ -728,7 +730,7 @@
                 labels: ['PM', 'NGN', 'WE', 'PgM', 'WCGB', 'BCCC', 'iLead', 'PE', 'IAN', 'xD'],
                 datasets: [{
                     data: [300, 224, 220, 177, 129, 114, 66, 30, 20, 15],
-                    backgroundColor: communityColors,
+                    backgroundColor: ['#236CFF', '#00254A', '#00254A', '#236CFF', '#00254A', '#236CFF', '#00254A', '#236CFF', '#00254A', '#236CFF'],
                     borderWidth: 3,
                     borderColor: '#fff',
                     hoverOffset: 8
