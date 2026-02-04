@@ -316,14 +316,10 @@
                     <p class="section-subtitle">Community-driven engagement initiatives</p>
                 </div>
                 
-                <div class="metrics-row">
+                <div class="metrics-row" style="grid-template-columns: repeat(3, 1fr);">
                     <div class="metric-card">
                         <div class="metric-value">611</div>
                         <div class="metric-label">Total Unique Attendees</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-value">14</div>
-                        <div class="metric-label">Total Communities</div>
                     </div>
                     <div class="metric-card">
                         <div class="metric-value">8</div>
@@ -335,18 +331,11 @@
                     </div>
                 </div>
                 
-                <div class="charts-grid">
+                <div class="charts-grid" style="grid-template-columns: 1fr;">
                     <div class="chart-container">
-                        <div class="chart-title">Community Events Distribution</div>
+                        <div class="chart-title">Community Events Participation</div>
                         <div class="chart-canvas">
                             <canvas id="communityParticipationChart"></canvas>
-                        </div>
-                    </div>
-                    
-                    <div class="chart-container">
-                        <div class="chart-title">Community Event Types</div>
-                        <div class="chart-canvas">
-                            <canvas id="communityEventTypesChart"></canvas>
                         </div>
                     </div>
                 </div>
@@ -540,18 +529,11 @@
                     </div>
                 </div>
                 
-                <div class="charts-grid">
+                <div class="charts-grid" style="grid-template-columns: 1fr;">
                     <div class="chart-container">
-                        <div class="chart-title">Site Events Distribution</div>
+                        <div class="chart-title">Site Events Participation</div>
                         <div class="chart-canvas">
                             <canvas id="siteEventsChart"></canvas>
-                        </div>
-                    </div>
-                    
-                    <div class="chart-container">
-                        <div class="chart-title">Site Event Types</div>
-                        <div class="chart-canvas">
-                            <canvas id="siteCategoriesChart"></canvas>
                         </div>
                     </div>
                 </div>
@@ -722,40 +704,16 @@
             }
         });
 
-        // Community Event Types Chart
-        const communityEventTypesCtx = document.getElementById('communityEventTypesChart').getContext('2d');
-        new Chart(communityEventTypesCtx, {
-            type: 'pie',
-            data: {
-                labels: ['Tech', 'Non Tech'],
-                datasets: [{
-                    data: [298, 438], // Tech: 230+15+21+24+8=298, Non-Tech: 146+85+66+54+38+21+19+9=438
-                    backgroundColor: ['#236CFF', '#00254A'], // Tech: Super Blue, Non Tech: blueberry-110
-                    borderWidth: 3,
-                    borderColor: '#fff'
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: 'bottom',
-                        labels: { padding: 15 }
-                    }
-                }
-            }
-        });
-
-        // Site Events Chart
+        // Site Events Chart - Non Tech: Blueberry (#00254A), Tech: Super Blue (#236CFF)
         const siteEventsCtx = document.getElementById('siteEventsChart').getContext('2d');
         new Chart(siteEventsCtx, {
             type: 'doughnut',
             data: {
-                labels: ['Diwali Sweet distribution', 'SOC (Site Events)', 'Cybersam (Site Tech)'],
+                labels: ['Diwali Sweet distribution', 'SOC', 'Cybersam - 2025'],
                 datasets: [{
                     data: [2260, 1293, 389],
-                    backgroundColor: siteColors.slice(0, 3),
+                    // Diwali: Non Tech (#00254A), SOC: Non Tech (#00254A), Cybersam: Tech (#236CFF)
+                    backgroundColor: ['#00254A', '#00254A', '#236CFF'],
                     borderWidth: 3,
                     borderColor: '#fff',
                     hoverOffset: 8
@@ -768,31 +726,6 @@
                     legend: {
                         position: 'bottom',
                         labels: { padding: 15, font: { size: 10 } }
-                    }
-                }
-            }
-        });
-
-        // Site Categories Chart
-        const siteCategoriesCtx = document.getElementById('siteCategoriesChart').getContext('2d');
-        new Chart(siteCategoriesCtx, {
-            type: 'pie',
-            data: {
-                labels: ['Non Tech', 'Tech'],
-                datasets: [{
-                    data: [3553, 389], // Non-Tech: 2260 (Diwali) + 1293 (SOC) = 3553, Tech: 389 (Cybersam)
-                    backgroundColor: ['#00254A', '#236CFF'], // Non Tech: blueberry-110, Tech: Super Blue
-                    borderWidth: 3,
-                    borderColor: '#fff'
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: 'bottom',
-                        labels: { padding: 15 }
                     }
                 }
             }

@@ -316,14 +316,10 @@
                     <p class="section-subtitle">Community-driven engagement initiatives</p>
                 </div>
                 
-                <div class="metrics-row">
+                <div class="metrics-row" style="grid-template-columns: repeat(3, 1fr);">
                     <div class="metric-card">
                         <div class="metric-value">494</div>
                         <div class="metric-label">Total Unique Attendees</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-value">14</div>
-                        <div class="metric-label">Total Communities</div>
                     </div>
                     <div class="metric-card">
                         <div class="metric-value">7</div>
@@ -335,18 +331,11 @@
                     </div>
                 </div>
                 
-                <div class="charts-grid">
+                <div class="charts-grid" style="grid-template-columns: 1fr;">
                     <div class="chart-container">
-                        <div class="chart-title">Community Events Distribution</div>
+                        <div class="chart-title">Community Events Participation</div>
                         <div class="chart-canvas">
                             <canvas id="communityParticipationChart"></canvas>
-                        </div>
-                    </div>
-                    
-                    <div class="chart-container">
-                        <div class="chart-title">Community Event Types</div>
-                        <div class="chart-canvas">
-                            <canvas id="communityEventTypesChart"></canvas>
                         </div>
                     </div>
                 </div>
@@ -520,18 +509,11 @@
                     </div>
                 </div>
                 
-                <div class="charts-grid">
+                <div class="charts-grid" style="grid-template-columns: 1fr;">
                     <div class="chart-container">
-                        <div class="chart-title">Site Events Distribution</div>
+                        <div class="chart-title">Site Events Participation</div>
                         <div class="chart-canvas">
                             <canvas id="siteEventsChart"></canvas>
-                        </div>
-                    </div>
-                    
-                    <div class="chart-container">
-                        <div class="chart-title">Site Event Types</div>
-                        <div class="chart-canvas">
-                            <canvas id="siteCategoriesChart"></canvas>
                         </div>
                     </div>
                 </div>
@@ -686,32 +668,7 @@
             }
         });
 
-        // Community Event Types Chart
-        const communityEventTypesCtx = document.getElementById('communityEventTypesChart').getContext('2d');
-        new Chart(communityEventTypesCtx, {
-            type: 'pie',
-            data: {
-                labels: ['Tech', 'Non Tech'],
-                datasets: [{
-                    data: [429, 271], // Tech: 158+114+58+31+26+25+17=429, Non-Tech: 210+28+19+14=271
-                    backgroundColor: ['#236CFF', '#00254A'],
-                    borderWidth: 3,
-                    borderColor: '#fff'
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: 'bottom',
-                        labels: { padding: 15 }
-                    }
-                }
-            }
-        });
-
-        // Site Events Chart
+        // Site Events Chart - Non Tech: Blueberry (#00254A), Tech: Super Blue (#236CFF)
         const siteEventsCtx = document.getElementById('siteEventsChart').getContext('2d');
         new Chart(siteEventsCtx, {
             type: 'doughnut',
@@ -719,7 +676,8 @@
                 labels: ['Employee Celebrations', 'GED Kick off 2025', 'Open Source Meetup'],
                 datasets: [{
                     data: [1242, 292, 92],
-                    backgroundColor: siteColors.slice(0, 3),
+                    // Employee Celebrations: Non Tech (#00254A), GED Kick off: Tech (#236CFF), Open Source: Tech (#236CFF)
+                    backgroundColor: ['#00254A', '#236CFF', '#236CFF'],
                     borderWidth: 3,
                     borderColor: '#fff',
                     hoverOffset: 8
@@ -732,31 +690,6 @@
                     legend: {
                         position: 'bottom',
                         labels: { padding: 15, font: { size: 10 } }
-                    }
-                }
-            }
-        });
-
-        // Site Categories Chart
-        const siteCategoriesCtx = document.getElementById('siteCategoriesChart').getContext('2d');
-        new Chart(siteCategoriesCtx, {
-            type: 'pie',
-            data: {
-                labels: ['Non Tech', 'Tech'],
-                datasets: [{
-                    data: [1242, 384], // Non-Tech: 1242 (Employee Celebrations), Tech: 292+92=384
-                    backgroundColor: ['#00254A', '#236CFF'],
-                    borderWidth: 3,
-                    borderColor: '#fff'
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: 'bottom',
-                        labels: { padding: 15 }
                     }
                 }
             }
