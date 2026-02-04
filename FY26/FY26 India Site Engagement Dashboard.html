@@ -307,25 +307,25 @@
                     <p class="section-subtitle">Community-driven engagement initiatives</p>
                 </div>
                 
-                <div class="metrics-row" style="grid-template-columns: repeat(3, 1fr);">
-                    <div class="metric-card">
-                        <div class="metric-value">943</div>
-                        <div class="metric-label">Total Unique Attendees</div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 25px;">
+                    <div class="metrics-row" style="grid-template-columns: 1fr; gap: 15px;">
+                        <div class="metric-card">
+                            <div class="metric-value">943</div>
+                            <div class="metric-label">Total Unique Attendees</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">10</div>
+                            <div class="metric-label">Active Communities</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">24</div>
+                            <div class="metric-label">Events Conducted</div>
+                        </div>
                     </div>
-                    <div class="metric-card">
-                        <div class="metric-value">10</div>
-                        <div class="metric-label">Active Communities</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-value">24</div>
-                        <div class="metric-label">Events Conducted</div>
-                    </div>
-                </div>
-                
-                <div class="charts-grid" style="grid-template-columns: 1fr;">
-                    <div class="chart-container">
+                    
+                    <div class="chart-container" style="height: 320px;">
                         <div class="chart-title">Community Events Participation</div>
-                        <div class="chart-canvas">
+                        <div class="chart-canvas" style="height: 260px;">
                             <canvas id="communityParticipationChart"></canvas>
                         </div>
                     </div>
@@ -549,25 +549,25 @@
                     <p class="section-subtitle">Organization-wide engagement initiatives</p>
                 </div>
                 
-                <div class="metrics-row">
-                    <div class="metric-card">
-                        <div class="metric-value">5,697</div>
-                        <div class="metric-label">Total Attendees</div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 25px;">
+                    <div class="metrics-row" style="grid-template-columns: 1fr; gap: 15px;">
+                        <div class="metric-card">
+                            <div class="metric-value">5,697</div>
+                            <div class="metric-label">Total Attendees</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">2,707</div>
+                            <div class="metric-label">Total Unique Attendees</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">6</div>
+                            <div class="metric-label">Site Events</div>
+                        </div>
                     </div>
-                    <div class="metric-card">
-                        <div class="metric-value">2,707</div>
-                        <div class="metric-label">Total Unique Attendees</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-value">6</div>
-                        <div class="metric-label">Site Events</div>
-                    </div>
-                </div>
-                
-                <div class="charts-grid" style="grid-template-columns: 1fr;">
-                    <div class="chart-container">
+                    
+                    <div class="chart-container" style="height: 320px;">
                         <div class="chart-title">Site Events Participation</div>
-                        <div class="chart-canvas">
+                        <div class="chart-canvas" style="height: 260px;">
                             <canvas id="siteEventsChart"></canvas>
                         </div>
                     </div>
@@ -742,7 +742,7 @@
                 plugins: {
                     legend: {
                         position: 'bottom',
-                        labels: { padding: 8, font: { size: 8 }, boxWidth: 12, boxHeight: 12 }
+                        labels: { padding: 10, font: { size: 11 }, boxWidth: 14, boxHeight: 14 }
                     }
                 }
             }
@@ -770,7 +770,7 @@
                 plugins: {
                     legend: {
                         position: 'bottom',
-                        labels: { padding: 8, font: { size: 8 } }
+                        labels: { padding: 10, font: { size: 11 } }
                     }
                 }
             }
